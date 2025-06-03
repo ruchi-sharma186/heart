@@ -16,12 +16,14 @@
             background-color: #ffebee;
             color: #d32f2f;
             overflow-x: hidden;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         
+        /* Login Container */
         .login-container {
             background-color: white;
             padding: 40px;
@@ -29,13 +31,19 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 400px;
-            width: 90%;
+            width: 100%;
             animation: fadeIn 0.5s ease-out;
         }
         
         .login-container h2 {
             margin-bottom: 20px;
             color: #d32f2f;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+        
+        .login-container p {
+            margin-bottom: 20px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .login-form {
@@ -52,6 +60,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
         .input-group input {
@@ -59,7 +68,7 @@
             padding: 12px 15px;
             border: 2px solid #ffcdd2;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             transition: border-color 0.3s;
         }
         
@@ -74,7 +83,7 @@
             border: none;
             padding: 12px;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -86,33 +95,40 @@
         .error-message {
             color: #d32f2f;
             margin-top: 10px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             display: none;
         }
         
+        /* Main Website Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
             display: none;
+            width: 100%;
         }
         
         header {
-            padding: 40px 0;
+            padding: 20px 0;
             position: relative;
         }
         
         h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             animation: fadeIn 2s ease-in-out;
         }
         
+        header p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+        
         .heart-container {
             position: relative;
-            height: 300px;
-            margin: 40px 0;
+            height: 200px;
+            margin: 30px 0;
         }
         
         .main-heart {
@@ -120,8 +136,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             background-color: #ff5252;
             transform: rotate(45deg);
             animation: heartbeat 1.5s infinite;
@@ -131,21 +147,21 @@
         .main-heart:before,
         .main-heart:after {
             content: '';
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             background-color: #ff5252;
             border-radius: 50%;
             position: absolute;
         }
         
         .main-heart:before {
-            top: -75px;
+            top: -50px;
             left: 0;
         }
         
         .main-heart:after {
             top: 0;
-            left: -75px;
+            left: -50px;
         }
         
         .floating-hearts {
@@ -159,8 +175,8 @@
         
         .floating-heart {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             background-color: #ff4081;
             transform: rotate(45deg);
             opacity: 0;
@@ -169,42 +185,53 @@
         .floating-heart:before,
         .floating-heart:after {
             content: '';
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             background-color: #ff4081;
             border-radius: 50%;
             position: absolute;
         }
         
         .floating-heart:before {
-            top: -15px;
+            top: -10px;
             left: 0;
         }
         
         .floating-heart:after {
             top: 0;
-            left: -15px;
+            left: -10px;
         }
         
         .content {
-            padding: 30px;
+            padding: 20px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 15px;
-            margin: 30px 0;
+            margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             animation: slideUp 1.5s ease-out;
         }
         
+        .content h2 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: 10px;
+        }
+        
+        .content p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 10px 20px;
             background-color: #ff5252;
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
             cursor: pointer;
-            margin: 20px 10px;
+            margin: 10px 5px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -216,11 +243,12 @@
         }
         
         footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 0.9rem;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
         
+        /* Animations */
         @keyframes heartbeat {
             0% {
                 transform: rotate(45deg) scale(1);
@@ -273,33 +301,96 @@
             }
         }
         
-        /* Responsive design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-10px); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(-10px); }
+            80% { transform: translateX(10px); }
+        }
+        
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .heart-container {
+                height: 300px;
+                margin: 40px 0;
             }
             
             .main-heart {
-                width: 100px;
-                height: 100px;
+                width: 150px;
+                height: 150px;
             }
             
             .main-heart:before,
             .main-heart:after {
-                width: 100px;
-                height: 100px;
+                width: 150px;
+                height: 150px;
             }
             
             .main-heart:before {
-                top: -50px;
+                top: -75px;
             }
             
             .main-heart:after {
-                left: -50px;
+                left: -75px;
             }
             
+            .floating-heart {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .floating-heart:before,
+            .floating-heart:after {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .floating-heart:before {
+                top: -15px;
+            }
+            
+            .floating-heart:after {
+                left: -15px;
+            }
+            
+            .content {
+                padding: 30px;
+                margin: 30px 0;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                margin: 20px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .login-container {
                 padding: 30px 20px;
+            }
+            
+            .heart-container {
+                height: 150px;
+            }
+            
+            .main-heart {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .main-heart:before,
+            .main-heart:after {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .main-heart:before {
+                top: -40px;
+            }
+            
+            .main-heart:after {
+                left: -40px;
             }
         }
     </style>
@@ -357,7 +448,7 @@
         const heartWebsite = document.getElementById('heartWebsite');
         
         // Set your password here (in a real app, this would be server-side)
-        const CORRECT_PASSWORD = "tecresearch"; // Change this to your desired password
+        const CORRECT_PASSWORD = "iloveyou"; // Change this to your desired password
         
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -366,6 +457,7 @@
                 // Correct password - show the heart website
                 loginContainer.style.display = 'none';
                 heartWebsite.style.display = 'block';
+                document.body.style.padding = '0'; // Remove padding after login
             } else {
                 // Wrong password - show error
                 errorMessage.style.display = 'block';
@@ -378,19 +470,6 @@
                 loginContainer.style.animation = 'shake 0.5s';
             }
         });
-        
-        // Add shake animation for wrong password
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                20% { transform: translateX(-10px); }
-                40% { transform: translateX(10px); }
-                60% { transform: translateX(-10px); }
-                80% { transform: translateX(10px); }
-            }
-        `;
-        document.head.appendChild(style);
         
         // Heart website functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -433,10 +512,10 @@
                         // Random position at the bottom
                         const leftPos = Math.random() * 100;
                         heart.style.left = `${leftPos}%`;
-                        heart.style.bottom = '-30px';
+                        heart.style.bottom = '-20px';
                         
                         // Random size
-                        const size = 15 + Math.random() * 30;
+                        const size = 10 + Math.random() * 30;
                         heart.style.width = `${size}px`;
                         heart.style.height = `${size}px`;
                         
