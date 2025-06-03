@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Heart Website</title>
+    <title>Secret Heart Website</title>
     <style>
         * {
             margin: 0;
@@ -16,6 +16,77 @@
             background-color: #ffebee;
             color: #d32f2f;
             overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #d32f2f;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-group {
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ffcdd2;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #d32f2f;
+        }
+        
+        .login-btn {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #b71c1c;
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            margin-top: 10px;
+            display: none;
         }
         
         .container {
@@ -23,6 +94,7 @@
             margin: 0 auto;
             padding: 20px;
             text-align: center;
+            display: none;
         }
         
         header {
@@ -225,11 +297,33 @@
             .main-heart:after {
                 left: -50px;
             }
+            
+            .login-container {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="login-container" id="loginContainer">
+        <h2>Welcome to the Secret Heart</h2>
+        <p>Please enter the password to continue</p>
+        
+        <form class="login-form" id="loginForm">
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Unlock the Heart</button>
+            
+            <div class="error-message" id="errorMessage">
+                Incorrect password. Please try again.
+            </div>
+        </form>
+    </div>
+    
+    <div class="container" id="heartWebsite">
         <header>
             <h1>Heart Full of Love</h1>
             <p>Spread love everywhere you go</p>
@@ -250,11 +344,55 @@
         </div>
         
         <footer>
-            <p>Made with ❤️ | Animated Heart Website</p>
+            <p>Made with ❤️ | Protected Heart Website</p>
         </footer>
     </div>
 
     <script>
+        // Password protection
+        const loginForm = document.getElementById('loginForm');
+        const passwordInput = document.getElementById('password');
+        const errorMessage = document.getElementById('errorMessage');
+        const loginContainer = document.getElementById('loginContainer');
+        const heartWebsite = document.getElementById('heartWebsite');
+        
+        // Set your password here (in a real app, this would be server-side)
+        const CORRECT_PASSWORD = "tecresearch"; // Change this to your desired password
+        
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if(passwordInput.value === CORRECT_PASSWORD) {
+                // Correct password - show the heart website
+                loginContainer.style.display = 'none';
+                heartWebsite.style.display = 'block';
+            } else {
+                // Wrong password - show error
+                errorMessage.style.display = 'block';
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // Shake animation for wrong password
+                loginContainer.style.animation = 'none';
+                void loginContainer.offsetWidth; // Trigger reflow
+                loginContainer.style.animation = 'shake 0.5s';
+            }
+        });
+        
+        // Add shake animation for wrong password
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                20% { transform: translateX(-10px); }
+                40% { transform: translateX(10px); }
+                60% { transform: translateX(-10px); }
+                80% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Heart website functionality
         document.addEventListener('DOMContentLoaded', function() {
             const floatingHearts = document.getElementById('floatingHearts');
             const heartBtn = document.getElementById('heartBtn');
@@ -276,9 +414,6 @@
                 mainHeart.style.backgroundColor = randomColor;
                 mainHeart.style.boxShadow = `0 0 40px ${randomColor}`;
                 
-                const beforeAfter = document.querySelectorAll('.main-heart:before, .main-heart:after');
-                // Note: We can't directly modify pseudo-elements with JavaScript, 
-                // so we'll add a style tag to override them
                 const style = document.createElement('style');
                 style.innerHTML = `
                     .main-heart:before, .main-heart:after {
@@ -309,7 +444,7 @@
                         const color = colors[Math.floor(Math.random() * colors.length)];
                         heart.style.backgroundColor = color;
                         
-                        // Create pseudo-elements with JavaScript (since we can't directly style them)
+                        // Create pseudo-elements with JavaScript
                         const before = document.createElement('div');
                         before.style.content = '';
                         before.style.width = `${size}px`;
@@ -350,7 +485,9 @@
             
             // Auto-create hearts periodically
             setInterval(() => {
-                createFloatingHearts(2);
+                if(heartWebsite.style.display === 'block') {
+                    createFloatingHearts(2);
+                }
             }, 3000);
         });
     </script>
